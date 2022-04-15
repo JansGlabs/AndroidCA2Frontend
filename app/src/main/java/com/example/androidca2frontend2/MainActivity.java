@@ -61,17 +61,7 @@ public class MainActivity extends AppCompatActivity {
         story.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gameDataService.getGameById(new GameDataService.VolleyResponseListener() {
-                    @Override
-                    public void onError(String message) {
-                        Toast.makeText(MainActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onResponse(String gameName) {
-                        Toast.makeText(MainActivity.this, "Returned the game: " + gameName, Toast.LENGTH_SHORT).show();
-                    }
-                });
+                gameDataService.getGameByID(1);
             }
         });
 
