@@ -12,6 +12,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameDataService {
 
     public static final String QUERY_FOR_GAMES = "https://eadgamesapi.azurewebsites.net/api/Games/genre/";
@@ -61,9 +64,9 @@ public class GameDataService {
         //return gameName;
     }
 
-//    public List<GamesReportModel> getGameByName {
-//
-//    }
+    public void getGameByID() {
+        List<GameReportModel> report = new ArrayList<>();
+    }
 //
 //    public List<GamesReportModel> getGamesByGenre {
 //
