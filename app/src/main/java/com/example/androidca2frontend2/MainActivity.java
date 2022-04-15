@@ -38,33 +38,23 @@ public class MainActivity extends AppCompatActivity {
 
         LView = findViewById(R.id.LView);
 
+        GameDataService gameDataService = new GameDataService(MainActivity.this);
+
         action.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                String url = "https://eadgamesapi.azurewebsites.net/api/Games";
-
-                JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+                // this returned null
+                gameDataService.getActionGames(new GameDataService.VolleyResponseListener() {
                     @Override
-                    public void onResponse(JSONArray response) {
-                        String gameName = "";
-                        try {
-                            JSONObject game = response.getJSONObject(0);
-                            gameName = game.getString("game");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        Toast.makeText(MainActivity.this, "Game Name: " + gameName, Toast.LENGTH_SHORT).show();
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
+                    public void onError(String message) {
                         Toast.makeText(MainActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
                     }
-                });
 
-                // Add a request (in this example, called stringRequest) to your RequestQueue.
-                MySingleton.getInstance(MainActivity.this).addToRequestQueue(request);
+                    @Override
+                    public void onResponse(String gameName) {
+                        Toast.makeText(MainActivity.this, "Returned the game: " + gameName, Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 
