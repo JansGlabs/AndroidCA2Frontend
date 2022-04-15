@@ -51,7 +51,17 @@ public class MainActivity extends AppCompatActivity {
         story.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gameDataService.getGameByID(12);
+                gameDataService.getGameByID("action", new GameDataService.GameByIDResponse() {
+                    @Override
+                    public void onError(String message) {
+                        Toast.makeText(MainActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onResponse(GameReportModel gameReportModel) {
+                        Toast.makeText(MainActivity.this, gameReportModel.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 

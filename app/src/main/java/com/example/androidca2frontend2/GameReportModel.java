@@ -14,6 +14,9 @@ public class GameReportModel {
         this.like = like;
     }
 
+    public GameReportModel() {
+    }
+
     @Override
     public String toString() {
         return "GameReportModel{" +
