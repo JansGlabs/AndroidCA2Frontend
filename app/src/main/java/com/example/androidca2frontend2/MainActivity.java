@@ -44,24 +44,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // this returned null
-                gameDataService.getActionGames(new GameDataService.VolleyResponseListener() {
-                    @Override
-                    public void onError(String message) {
-                        Toast.makeText(MainActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onResponse(String gameName) {
-                        Toast.makeText(MainActivity.this, "Returned the game: " + gameName, Toast.LENGTH_SHORT).show();
-                    }
-                });
+                gameDataService.getActionGames("action");
             }
         });
 
         story.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gameDataService.getGameByID(1);
+                gameDataService.getGameByID(12);
             }
         });
 

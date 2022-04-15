@@ -34,36 +34,25 @@ public class GameDataService {
         void onResponse(String gameName);
     }
 
-    public void getActionGames(VolleyResponseListener volleyResponseListener) {
+    public void getActionGames(String genre) {
         String url = QUERY_FOR_GAMES + "action";
 
+        List<GameReportModel> report = new ArrayList<>();
+
+        // Get JSON object
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+
             @Override
             public void onResponse(JSONArray response) {
-                gameName = "";
-                try {
-                    JSONObject game = response.getJSONObject(0);
-                    gameName = game.getString("game");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                // This worked but didn't return
-                //Toast.makeText(context, "Game Name: " + gameName, Toast.LENGTH_SHORT).show();
-                volleyResponseListener.onResponse(gameName);
+                Toast.makeText(context, response.toString(), Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
-                volleyResponseListener.onError("Something went wrong");
+
             }
         });
-
-        // Add a request (in this example, called stringRequest) to your RequestQueue.
         MySingleton.getInstance(context).addToRequestQueue(request);
-
-        // returned a NULL
-        //return gameName;
     }
 
     public void getGameByID(int gameID) {
