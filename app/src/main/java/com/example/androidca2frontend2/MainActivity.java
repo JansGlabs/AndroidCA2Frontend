@@ -1,29 +1,44 @@
 package com.example.androidca2frontend2;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.ColorSpace;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
+//import com.android.volley.Request;
+//import com.android.volley.RequestQueue;
+//import com.android.volley.Response;
+//import com.android.volley.VolleyError;
+//import com.android.volley.toolbox.JsonArrayRequest;
+//import com.android.volley.toolbox.StringRequest;
+//import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
     Button action, story, racing, survival;
-    ListView LView;
+    private TextView gameResult;
 
 
     @Override
@@ -32,50 +47,45 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         action = findViewById(R.id.action);
-        story = findViewById(R.id.story);
-        racing = findViewById(R.id.racing);
-        survival = findViewById(R.id.survival);
+        gameResult = findViewById(R.id.gameResult);
+//        story = findViewById(R.id.story);
+//        racing = findViewById(R.id.racing);
+//        survival = findViewById(R.id.survival);
+//
+//        LView = findViewById(R.id.LView);
 
-        LView = findViewById(R.id.LView);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://eadgamesapi.azurewebsites.net/api/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-        GameDataService gameDataService = new GameDataService(MainActivity.this);
+        JSONPlaceHolderAPI jsonPlaceHolderAPI = retrofit.create(JSONPlaceHolderAPI.class);
 
-        action.setOnClickListener(new View.OnClickListener() {
+        Call<List<Games>> call = jsonPlaceHolderAPI.getGames();
+        call.enqueue(new Callback<List<Games>>() {
             @Override
-            public void onClick(View view) {
-                // this returned null
-                gameDataService.getActionGames("action");
+            public void onResponse(Call<List<Games>> call, Response<List<Games>> response) {
+                if (!response.isSuccessful()) {
+                    gameResult.setText("Code: " + response.code());
+                    return;
+                }
+
+                List<Games> games = response.body();
+
+                for (Games games1 : games) {
+                    String content = "";
+                    content += games1.getId() + "\t";
+                    content += games1.getGame() + "\t";
+                    content += games1.getGenre() + "\t";
+                    content += "Likes: " + games1.getLike() + "\n\n";
+
+                    gameResult.append(content);
+                }
             }
-        });
 
-        story.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                gameDataService.getGameByID("action", new GameDataService.GameByIDResponse() {
-                    @Override
-                    public void onError(String message) {
-                        Toast.makeText(MainActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onResponse(GameReportModel gameReportModel) {
-                        Toast.makeText(MainActivity.this, gameReportModel.toString(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        });
-
-        racing.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "You clicked me 3", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        survival.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this, "You clicked me 4", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<List<Games>> call, Throwable t) {
+                gameResult.setText(t.getMessage());
             }
         });
     }
