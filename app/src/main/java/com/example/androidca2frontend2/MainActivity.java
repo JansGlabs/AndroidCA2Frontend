@@ -61,8 +61,10 @@ public class MainActivity extends AppCompatActivity {
 
         JSONPlaceHolderAPI jsonPlaceHolderAPI = retrofit.create(JSONPlaceHolderAPI.class);
 
+        // Callback
         Call<List<Games>> call = jsonPlaceHolderAPI.getGames();
         call.enqueue(new Callback<List<Games>>() {
+            // Checks if successful and displays
             @Override
             public void onResponse(Call<List<Games>> call, Response<List<Games>> response) {
                 if (!response.isSuccessful()) {
@@ -70,19 +72,21 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
+                // Gets JSON Objects
                 List<Games> games = response.body();
 
+                // Iterates through each JSON item
                 for (Games games1 : games) {
                     String content = "";
-                    content += games1.getId() + "\t";
-                    content += games1.getGame() + "\t";
-                    content += games1.getGenre() + "\t";
+                    content += games1.getId() + ",\t";
+                    content += games1.getGame() + ",\t";
+                    content += games1.getGenre() + ",\t";
                     content += "Likes: " + games1.getLike() + "\n\n";
 
                     gameResult.append(content);
                 }
             }
-
+            // Checks if unsuccessful and displays error
             @Override
             public void onFailure(Call<List<Games>> call, Throwable t) {
                 gameResult.setText(t.getMessage());
