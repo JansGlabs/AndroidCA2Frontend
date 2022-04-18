@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 for (Consoles allConsoles : consoles) {
                     String content = "";
                     content += allConsoles.getId() + ",\t";
-                    content += allConsoles.getName() + ",\t";
+                    content += allConsoles.getName() + "\n\n";
 
                     consolesResult.append(content);
                 }
