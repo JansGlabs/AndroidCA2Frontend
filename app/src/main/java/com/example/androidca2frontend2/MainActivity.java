@@ -2,8 +2,14 @@ package com.example.androidca2frontend2;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
@@ -12,6 +18,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,16 +28,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button games, action, adventure, fps, story, survival, racing, search, like, console;
+    Button changeLang, games, action, adventure, fps, story, survival, racing, search, like, console;
     private TextView gameResult;
     private TextView consolesResult;
     private EditText dataInput;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLocale();
         setContentView(R.layout.activity_main);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle(getResources().getString(R.string.app_name));
 
         games = findViewById(R.id.games);
         gameResult = findViewById(R.id.gameResult);
@@ -46,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         story = findViewById(R.id.story);
         survival = findViewById(R.id.survival);
         racing = findViewById(R.id.racing);
+        changeLang = findViewById(R.id.changeLang);
 
 //        LView = findViewById(R.id.LView);
 
@@ -55,6 +66,13 @@ public class MainActivity extends AppCompatActivity {
                 .build();
 
         JSONPlaceHolderAPI jsonPlaceHolderAPI = retrofit.create(JSONPlaceHolderAPI.class);
+
+        changeLang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showChangeLanguageDialog();
+            }
+        });
 
         // Callback
         Call<List<Games>> call = jsonPlaceHolderAPI.getGames();
@@ -459,5 +477,56 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    private void showChangeLanguageDialog() {
+        final String[] listLangs = {"Bosnian", "Russian", "English"};
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+        mBuilder.setTitle("Choose Language...");
+        mBuilder.setSingleChoiceItems(listLangs, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if (i == 0){
+                    // Bosnian
+                    setLocale("bs");
+                    recreate();
+                }
+                else if (i == 1){
+                    // Russian
+                    setLocale("ru");
+                    recreate();
+                }
+                else if (i == 2){
+                    // English
+                    setLocale("en");
+                    recreate();
+                }
+
+                dialogInterface.dismiss();
+            }
+        });
+
+        AlertDialog mDialog = mBuilder.create();
+
+        mDialog.show();
+    }
+
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        // Save data
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("My_Lang", lang);
+        editor.apply();
+    }
+
+    public void loadLocale() {
+        SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = prefs.getString("My_Lang", "");
+        setLocale(language);
+
     }
 }

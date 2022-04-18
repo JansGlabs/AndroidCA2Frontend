@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
-        android:text="Search"
+        android:text="@string/search"
         app:layout_constraintEnd_toStartOf="@+id/like"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,8 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="320dp"
         android:layout_marginTop="120dp"
+        android:text="@string/games"
         android:textSize="10sp"
-        android:text="games"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,8 +31,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
+        android:text="@string/action"
         android:textSize="10sp"
-        android:text="action"
         app:layout_constraintStart_toStartOf="@+id/games"
         app:layout_constraintTop_toTopOf="@+id/games" />
 
@@ -41,8 +41,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
+        android:text="@string/adventure"
         android:textSize="10sp"
-        android:text="adventure"
         app:layout_constraintStart_toStartOf="@+id/action"
         app:layout_constraintTop_toTopOf="@+id/action" />
 
@@ -51,8 +51,8 @@
         android:id="@+id/console"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/consoles"
         android:textSize="10sp"
-        android:text="consoles"
         app:layout_constraintBottom_toTopOf="@+id/games"
         app:layout_constraintStart_toStartOf="@+id/games" />
 
@@ -61,8 +61,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
+        android:text="@string/fps"
         android:textSize="10sp"
-        android:text="fps"
         app:layout_constraintStart_toStartOf="@+id/adventure"
         app:layout_constraintTop_toTopOf="@+id/adventure" />
 
@@ -72,8 +72,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
+        android:text="@string/story"
         android:textSize="10sp"
-        android:text="story"
         app:layout_constraintStart_toStartOf="@+id/fps"
         app:layout_constraintTop_toTopOf="@+id/fps" />
 
@@ -82,8 +82,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
+        android:text="@string/survival"
         android:textSize="10sp"
-        android:text="survival"
         app:layout_constraintStart_toStartOf="@+id/story"
         app:layout_constraintTop_toTopOf="@+id/story" />
 
@@ -92,8 +92,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
+        android:text="@string/racing"
         android:textSize="10sp"
-        android:text="racing"
         app:layout_constraintStart_toStartOf="@+id/survival"
         app:layout_constraintTop_toTopOf="@+id/survival" />
 
@@ -102,9 +102,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:scrollbars="vertical"
         android:textColor="#000000"
         android:textSize="18sp"
-        android:scrollbars = "vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -115,9 +115,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:scrollbars="vertical"
         android:textColor="#000000"
         android:textSize="18sp"
-        android:scrollbars = "vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search" />
@@ -127,7 +127,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
-        android:text="Like"
+        android:text="@string/like"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -139,9 +139,21 @@
         android:hint="Game Name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/search"
+        android:text="@string/dataInput"
         app:layout_constraintHorizontal_bias="0.029"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/changeLang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:ems="10"
+        android:text="@string/changeLang"
+        android:textSize="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/racing" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

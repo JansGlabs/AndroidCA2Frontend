@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Aplikacija za igre</string>
+
+    <string name="dataInput">Naziv igre</string>
+    <string name="search">Traži</string>
+    <string name="like">Like</string>
+    <string name="consoles">Konzole</string>
+    <string name="games">Igre</string>
+    <string name="action">Akcija</string>
+    <string name="adventure">Avantura</string>
+    <string name="fps">FPS</string>
+    <string name="story">Priča</string>
+    <string name="survival">Preživljavanje</string>
+    <string name="racing">Trkaći</string>
+    <string name="changeLang">Promijeni Jezik</string>
+</resources>

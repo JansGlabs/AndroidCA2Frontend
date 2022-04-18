@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Games App</string>
+
+    <string name="dataInput">Games Name</string>
+    <string name="search">Search</string>
+    <string name="like">Like</string>
+    <string name="consoles">Consoles</string>
+    <string name="games">Games</string>
+    <string name="action">Action</string>
+    <string name="adventure">Adventure</string>
+    <string name="fps">FPS</string>
+    <string name="story">Story</string>
+    <string name="survival">Survival</string>
+    <string name="racing">Racing</string>
+    <string name="changeLang">Change Language</string>
 </resources>

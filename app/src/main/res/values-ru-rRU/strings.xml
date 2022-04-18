@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Игровое приложение</string>
+
+    <string name="dataInput">Название игры</string>
+    <string name="search">Поиск</string>
+    <string name="like">Нравиться</string>
+    <string name="consoles">Консоли</string>
+    <string name="games">Игры</string>
+    <string name="action">Действие</string>
+    <string name="adventure">Приключение</string>
+    <string name="fps">FPS</string>
+    <string name="story">История</string>
+    <string name="survival">Выживание</string>
+    <string name="racing">Гонки</string>
+    <string name="changeLang">изменить язык</string>
+</resources>
