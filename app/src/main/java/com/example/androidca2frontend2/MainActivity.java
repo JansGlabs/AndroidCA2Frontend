@@ -20,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button action, story, racing, survival, search, like;
+    Button action, story, racing, survival, search, like, console;
     private TextView gameResult;
     private TextView consolesResult;
     private EditText dataInput;
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         search = findViewById(R.id.search);
         dataInput = findViewById(R.id.dataInput);
         like = findViewById(R.id.like);
+        console = findViewById(R.id.console);
 //        story = findViewById(R.id.story);
 //        racing = findViewById(R.id.racing);
 //        survival = findViewById(R.id.survival);
@@ -82,31 +83,40 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Call<List<Consoles>> callConsoles = jsonPlaceHolderAPI.getConsoles();
-        callConsoles.enqueue(new Callback<List<Consoles>>() {
+        //get api/consoles
+        console.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<List<Consoles>> callConsoles, Response<List<Consoles>> response) {
-                if (!response.isSuccessful()) {
-                    consolesResult.setText("Code: " + response.code());
-                    return;
-                }
+            public void onClick(View view) {
+                gameResult.setText("");
+                consolesResult.setText("");
+                Call<List<Consoles>> callConsoles = jsonPlaceHolderAPI.getConsoles();
+                callConsoles.enqueue(new Callback<List<Consoles>>() {
+                    @Override
+                    public void onResponse(Call<List<Consoles>> callConsoles, Response<List<Consoles>> response) {
+                        if (!response.isSuccessful()) {
+                            consolesResult.setText("Code: " + response.code());
+                            return;
+                        }
 
-                List<Consoles> consoles = response.body();
+                        List<Consoles> consoles = response.body();
 
-                for (Consoles allConsoles : consoles) {
-                    String content = "";
-                    content += allConsoles.getId() + ",\t";
-                    content += allConsoles.getName() + "\n\n";
+                        for (Consoles allConsoles : consoles) {
+                            String content = "";
+                            content += allConsoles.getId() + ",\t";
+                            content += allConsoles.getName() + "\n\n";
 
-                    consolesResult.append(content);
-                }
-            }
+                            consolesResult.append(content);
+                        }
+                    }
 
-            @Override
-            public void onFailure(Call<List<Consoles>> callConsoles, Throwable t) {
-                consolesResult.setText(t.getMessage());
+                    @Override
+                    public void onFailure(Call<List<Consoles>> callConsoles, Throwable t) {
+                        consolesResult.setText(t.getMessage());
+                    }
+                });
             }
         });
+
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override

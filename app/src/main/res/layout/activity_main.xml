@@ -39,15 +39,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="racing"
-        app:layout_constraintEnd_toStartOf="@+id/consoles"
+        app:layout_constraintEnd_toStartOf="@+id/console"
         app:layout_constraintStart_toEndOf="@+id/story"
         app:layout_constraintTop_toTopOf="@+id/story" />
 
     <Button
-        android:id="@+id/consoles"
+        android:id="@+id/console"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="consoles"
+        android:text="console"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/racing"
         app:layout_constraintTop_toTopOf="@+id/racing"
@@ -72,6 +72,7 @@
         android:layout_marginTop="60dp"
         android:ems="10"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/action" />
 
     <Button
@@ -82,7 +83,7 @@
         android:layout_marginEnd="4dp"
         android:text="Like"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/consoles" />
+        app:layout_constraintTop_toBottomOf="@+id/console" />
 
     <EditText
         android:id="@+id/dataInput"
