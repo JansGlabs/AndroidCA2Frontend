@@ -2,7 +2,7 @@ package com.example.androidca2frontend2;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Console {
+public class Consoles {
 
     private int id;
     private String name;
