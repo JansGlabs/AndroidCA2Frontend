@@ -20,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button action, story, racing, survival, search;
+    Button action, story, racing, survival, search, like;
     private TextView gameResult;
     private TextView consolesResult;
     private EditText dataInput;
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         consolesResult = findViewById(R.id.consolesResult);
         search = findViewById(R.id.search);
         dataInput = findViewById(R.id.dataInput);
+        like = findViewById(R.id.like);
 //        story = findViewById(R.id.story);
 //        racing = findViewById(R.id.racing);
 //        survival = findViewById(R.id.survival);
@@ -140,6 +141,86 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<List<Games>> callGameByName, Throwable t) {
                         dataInput.setText(t.getMessage());
+                    }
+                });
+            }
+        });
+
+        like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gameResult.setText("");
+                consolesResult.setText("");
+                Call<List<Games>> likeGame = jsonPlaceHolderAPI.likeGame(dataInput.getText().toString());
+                likeGame.enqueue(new Callback<List<Games>>() {
+                    // Checks if successful and displays
+                    @Override
+                    public void onResponse(Call<List<Games>> likeGame, Response<List<Games>> response) {
+                        if (!response.isSuccessful()) {
+                            dataInput.setText("Code: " + response.code());
+                            return;
+                        }
+                    }
+                    // Checks if unsuccessful and displays error
+                    @Override
+                    public void onFailure(Call<List<Games>> likeGame, Throwable t) {
+                        dataInput.setText(t.getMessage());
+                    }
+                });
+                //
+                Call<List<Games>> call = jsonPlaceHolderAPI.getGames();
+                call.enqueue(new Callback<List<Games>>() {
+                    // Checks if successful and displays
+                    @Override
+                    public void onResponse(Call<List<Games>> call, Response<List<Games>> response) {
+                        if (!response.isSuccessful()) {
+                            gameResult.setText("Code: " + response.code());
+                            return;
+                        }
+
+                        // Gets JSON Objects
+                        List<Games> games = response.body();
+
+                        // Iterates through each JSON item
+                        for (Games games1 : games) {
+                            String content = "";
+                            content += games1.getId() + ",\t";
+                            content += games1.getGame() + ",\t";
+                            content += games1.getGenre() + ",\t";
+                            content += "Likes: " + games1.getLike() + "\n\n";
+
+                            gameResult.append(content);
+                        }
+                    }
+                    // Checks if unsuccessful and displays error
+                    @Override
+                    public void onFailure(Call<List<Games>> call, Throwable t) {
+                        gameResult.setText(t.getMessage());
+                    }
+                });
+                Call<List<Consoles>> callConsoles = jsonPlaceHolderAPI.getConsoles();
+                callConsoles.enqueue(new Callback<List<Consoles>>() {
+                    @Override
+                    public void onResponse(Call<List<Consoles>> callConsoles, Response<List<Consoles>> response) {
+                        if (!response.isSuccessful()) {
+                            consolesResult.setText("Code: " + response.code());
+                            return;
+                        }
+
+                        List<Consoles> consoles = response.body();
+
+                        for (Consoles allConsoles : consoles) {
+                            String content = "";
+                            content += allConsoles.getId() + ",\t";
+                            content += allConsoles.getName() + "\n\n";
+
+                            consolesResult.append(content);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Consoles>> callConsoles, Throwable t) {
+                        consolesResult.setText(t.getMessage());
                     }
                 });
             }
