@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                     content += "Likes: " + games1.getLike() + "\n\n";
 
                     gameResult.append(content);
+                    gameResult.setMovementMethod(new ScrollingMovementMethod());
                 }
             }
             // Checks if unsuccessful and displays error
@@ -106,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
                             content += allConsoles.getName() + "\n\n";
 
                             consolesResult.append(content);
+                            consolesResult.setMovementMethod(new ScrollingMovementMethod());
                         }
                     }
 
@@ -145,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
                             content += "Likes: " + games1.getLike() + "\n\n";
 
                             gameResult.append(content);
+                            gameResult.setMovementMethod(new ScrollingMovementMethod());
                         }
                     }
                     // Checks if unsuccessful and displays error
@@ -183,6 +187,7 @@ public class MainActivity extends AppCompatActivity {
                             content += "Likes: " + games1.getLike() + "\n\n";
 
                             gameResult.append(content);
+                            gameResult.setMovementMethod(new ScrollingMovementMethod());
                         }
                     }
                     // Checks if unsuccessful and displays error
@@ -238,6 +243,7 @@ public class MainActivity extends AppCompatActivity {
                             content += "Likes: " + games1.getLike() + "\n\n";
 
                             gameResult.append(content);
+                            gameResult.setMovementMethod(new ScrollingMovementMethod());
                         }
                     }
                     // Checks if unsuccessful and displays error
@@ -263,6 +269,7 @@ public class MainActivity extends AppCompatActivity {
                             content += allConsoles.getName() + "\n\n";
 
                             consolesResult.append(content);
+                            consolesResult.setMovementMethod(new ScrollingMovementMethod());
                         }
                     }
 
