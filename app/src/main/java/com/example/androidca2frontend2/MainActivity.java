@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
                 // Iterates through each JSON item
                 for (Games games1 : games) {
                     String content = "";
-                    content += games1.getId() + ", ";
                     content += games1.getGame() + ", ";
                     content += games1.getGenre() + ", ";
                     content += "Likes: " + games1.getLike() + "\n\n";
@@ -146,7 +145,6 @@ public class MainActivity extends AppCompatActivity {
                         // Iterates through each JSON item
                         for (Games games1 : games) {
                             String content = "";
-                            content += games1.getId() + ", ";
                             content += games1.getGame() + ", ";
                             content += games1.getGenre() + ", ";
                             content += "Likes: " + games1.getLike() + "\n\n";
@@ -185,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
                         // Iterates through each JSON item
                         for (Games games1 : games) {
                             String content = "";
-                            content += games1.getId() + ", ";
                             content += games1.getGame() + ", ";
                             content += games1.getGenre() + ", ";
                             content += "Likes: " + games1.getLike() + "\n\n";
@@ -241,7 +238,6 @@ public class MainActivity extends AppCompatActivity {
                         // Iterates through each JSON item
                         for (Games games1 : games) {
                             String content = "";
-                            content += games1.getId() + ", ";
                             content += games1.getGame() + ", ";
                             content += games1.getGenre() + ", ";
                             content += "Likes: " + games1.getLike() + "\n\n";
@@ -278,7 +274,6 @@ public class MainActivity extends AppCompatActivity {
 
                         for (Games games1 : games) {
                             String content = "";
-                            content += games1.getId() + ", ";
                             content += games1.getGame() + ", ";
                             content += games1.getGenre() + ", ";
                             content += "Likes: " + games1.getLike() + "\n\n";
@@ -313,7 +308,6 @@ public class MainActivity extends AppCompatActivity {
 
                         for (Games games1 : games) {
                             String content = "";
-                            content += games1.getId() + ", ";
                             content += games1.getGame() + ", ";
                             content += games1.getGenre() + ", ";
                             content += "Likes: " + games1.getLike() + "\n\n";
@@ -348,7 +342,6 @@ public class MainActivity extends AppCompatActivity {
 
                         for (Games games1 : games) {
                             String content = "";
-                            content += games1.getId() + ", ";
                             content += games1.getGame() + ", ";
                             content += games1.getGenre() + ", ";
                             content += "Likes: " + games1.getLike() + "\n\n";
@@ -383,7 +376,6 @@ public class MainActivity extends AppCompatActivity {
 
                         for (Games games1 : games) {
                             String content = "";
-                            content += games1.getId() + ", ";
                             content += games1.getGame() + ", ";
                             content += games1.getGenre() + ", ";
                             content += "Likes: " + games1.getLike() + "\n\n";
@@ -418,7 +410,6 @@ public class MainActivity extends AppCompatActivity {
 
                         for (Games games1 : games) {
                             String content = "";
-                            content += games1.getId() + ", ";
                             content += games1.getGame() + ", ";
                             content += games1.getGenre() + ", ";
                             content += "Likes: " + games1.getLike() + "\n\n";
@@ -453,7 +444,6 @@ public class MainActivity extends AppCompatActivity {
 
                         for (Games games1 : games) {
                             String content = "";
-                            content += games1.getId() + ", ";
                             content += games1.getGame() + ", ";
                             content += games1.getGenre() + ", ";
                             content += "Likes: " + games1.getLike() + "\n\n";
