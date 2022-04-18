@@ -20,4 +20,7 @@ public interface JSONPlaceHolderAPI {
 
     @PUT("Games/like/{gameName}")
     Call<List<Games>> likeGame(@Path("gameName") String gameName);
+
+    @GET("Games/genre/{genreName}")
+    Call<List<Games>> filterGame(@Path("genreName") String genreName);
 }

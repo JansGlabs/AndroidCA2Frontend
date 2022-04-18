@@ -22,7 +22,7 @@
         android:layout_marginStart="320dp"
         android:layout_marginTop="120dp"
         android:textSize="10sp"
-        android:text="all"
+        android:text="games"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:textSize="10sp"
-        android:text="adventur"
+        android:text="adventure"
         app:layout_constraintStart_toStartOf="@+id/action"
         app:layout_constraintTop_toTopOf="@+id/action" />
 
@@ -61,6 +61,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
+        android:textSize="10sp"
         android:text="fps"
         app:layout_constraintStart_toStartOf="@+id/adventure"
         app:layout_constraintTop_toTopOf="@+id/adventure" />
@@ -73,8 +74,8 @@
         android:layout_marginTop="48dp"
         android:textSize="10sp"
         android:text="story"
-        app:layout_constraintStart_toStartOf="@+id/adventure"
-        app:layout_constraintTop_toTopOf="@+id/adventure" />
+        app:layout_constraintStart_toStartOf="@+id/fps"
+        app:layout_constraintTop_toTopOf="@+id/fps" />
 
     <Button
         android:id="@+id/survival"
@@ -82,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:textSize="10sp"
-        android:text="survive"
+        android:text="survival"
         app:layout_constraintStart_toStartOf="@+id/story"
         app:layout_constraintTop_toTopOf="@+id/story" />
 

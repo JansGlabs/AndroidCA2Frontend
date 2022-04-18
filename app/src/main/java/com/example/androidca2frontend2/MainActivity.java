@@ -21,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button games, story, racing, survival, search, like, console;
+    Button games, action, adventure, fps, story, survival, racing, search, like, console;
     private TextView gameResult;
     private TextView consolesResult;
     private EditText dataInput;
@@ -39,10 +39,14 @@ public class MainActivity extends AppCompatActivity {
         dataInput = findViewById(R.id.dataInput);
         like = findViewById(R.id.like);
         console = findViewById(R.id.console);
-//        story = findViewById(R.id.story);
-//        racing = findViewById(R.id.racing);
-//        survival = findViewById(R.id.survival);
-//
+
+        action = findViewById(R.id.action);
+        adventure = findViewById(R.id.adventure);
+        fps = findViewById(R.id.fps);
+        story = findViewById(R.id.story);
+        survival = findViewById(R.id.survival);
+        racing = findViewById(R.id.racing);
+
 //        LView = findViewById(R.id.LView);
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -252,30 +256,215 @@ public class MainActivity extends AppCompatActivity {
                         gameResult.setText(t.getMessage());
                     }
                 });
-                Call<List<Consoles>> callConsoles = jsonPlaceHolderAPI.getConsoles();
-                callConsoles.enqueue(new Callback<List<Consoles>>() {
+            }
+        });
+
+        //filters
+        action.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gameResult.setText("");
+                consolesResult.setText("");
+                String buttonText = action.getText().toString();
+                Call<List<Games>> filterGame = jsonPlaceHolderAPI.filterGame(buttonText);
+                filterGame.enqueue(new Callback<List<Games>>() {
                     @Override
-                    public void onResponse(Call<List<Consoles>> callConsoles, Response<List<Consoles>> response) {
+                    public void onResponse(Call<List<Games>> callGameByName, Response<List<Games>> response) {
                         if (!response.isSuccessful()) {
-                            consolesResult.setText("Code: " + response.code());
+                            dataInput.setText("Code: " + response.code());
                             return;
                         }
+                        List<Games> games = response.body();
 
-                        List<Consoles> consoles = response.body();
-
-                        for (Consoles allConsoles : consoles) {
+                        for (Games games1 : games) {
                             String content = "";
-                            content += allConsoles.getId() + ", ";
-                            content += allConsoles.getName() + "\n\n";
+                            content += games1.getId() + ", ";
+                            content += games1.getGame() + ", ";
+                            content += games1.getGenre() + ", ";
+                            content += "Likes: " + games1.getLike() + "\n\n";
 
-                            consolesResult.append(content);
-                            consolesResult.setMovementMethod(new ScrollingMovementMethod());
+                            gameResult.append(content);
+                            gameResult.setMovementMethod(new ScrollingMovementMethod());
                         }
                     }
-
                     @Override
-                    public void onFailure(Call<List<Consoles>> callConsoles, Throwable t) {
-                        consolesResult.setText(t.getMessage());
+                    public void onFailure(Call<List<Games>> callGameByName, Throwable t) {
+                        dataInput.setText(t.getMessage());
+                    }
+                });
+            }
+        });
+
+        adventure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gameResult.setText("");
+                consolesResult.setText("");
+                String buttonText = adventure.getText().toString();
+                Call<List<Games>> filterGame = jsonPlaceHolderAPI.filterGame(buttonText);
+                filterGame.enqueue(new Callback<List<Games>>() {
+                    @Override
+                    public void onResponse(Call<List<Games>> callGameByName, Response<List<Games>> response) {
+                        if (!response.isSuccessful()) {
+                            dataInput.setText("Code: " + response.code());
+                            return;
+                        }
+                        List<Games> games = response.body();
+
+                        for (Games games1 : games) {
+                            String content = "";
+                            content += games1.getId() + ", ";
+                            content += games1.getGame() + ", ";
+                            content += games1.getGenre() + ", ";
+                            content += "Likes: " + games1.getLike() + "\n\n";
+
+                            gameResult.append(content);
+                            gameResult.setMovementMethod(new ScrollingMovementMethod());
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<List<Games>> callGameByName, Throwable t) {
+                        dataInput.setText(t.getMessage());
+                    }
+                });
+            }
+        });
+
+        fps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gameResult.setText("");
+                consolesResult.setText("");
+                String buttonText = fps.getText().toString();
+                Call<List<Games>> filterGame = jsonPlaceHolderAPI.filterGame(buttonText);
+                filterGame.enqueue(new Callback<List<Games>>() {
+                    @Override
+                    public void onResponse(Call<List<Games>> callGameByName, Response<List<Games>> response) {
+                        if (!response.isSuccessful()) {
+                            dataInput.setText("Code: " + response.code());
+                            return;
+                        }
+                        List<Games> games = response.body();
+
+                        for (Games games1 : games) {
+                            String content = "";
+                            content += games1.getId() + ", ";
+                            content += games1.getGame() + ", ";
+                            content += games1.getGenre() + ", ";
+                            content += "Likes: " + games1.getLike() + "\n\n";
+
+                            gameResult.append(content);
+                            gameResult.setMovementMethod(new ScrollingMovementMethod());
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<List<Games>> callGameByName, Throwable t) {
+                        dataInput.setText(t.getMessage());
+                    }
+                });
+            }
+        });
+
+        story.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gameResult.setText("");
+                consolesResult.setText("");
+                String buttonText = story.getText().toString();
+                Call<List<Games>> filterGame = jsonPlaceHolderAPI.filterGame(buttonText);
+                filterGame.enqueue(new Callback<List<Games>>() {
+                    @Override
+                    public void onResponse(Call<List<Games>> callGameByName, Response<List<Games>> response) {
+                        if (!response.isSuccessful()) {
+                            dataInput.setText("Code: " + response.code());
+                            return;
+                        }
+                        List<Games> games = response.body();
+
+                        for (Games games1 : games) {
+                            String content = "";
+                            content += games1.getId() + ", ";
+                            content += games1.getGame() + ", ";
+                            content += games1.getGenre() + ", ";
+                            content += "Likes: " + games1.getLike() + "\n\n";
+
+                            gameResult.append(content);
+                            gameResult.setMovementMethod(new ScrollingMovementMethod());
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<List<Games>> callGameByName, Throwable t) {
+                        dataInput.setText(t.getMessage());
+                    }
+                });
+            }
+        });
+
+        survival.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gameResult.setText("");
+                consolesResult.setText("");
+                String buttonText = survival.getText().toString();
+                Call<List<Games>> filterGame = jsonPlaceHolderAPI.filterGame(buttonText);
+                filterGame.enqueue(new Callback<List<Games>>() {
+                    @Override
+                    public void onResponse(Call<List<Games>> callGameByName, Response<List<Games>> response) {
+                        if (!response.isSuccessful()) {
+                            dataInput.setText("Code: " + response.code());
+                            return;
+                        }
+                        List<Games> games = response.body();
+
+                        for (Games games1 : games) {
+                            String content = "";
+                            content += games1.getId() + ", ";
+                            content += games1.getGame() + ", ";
+                            content += games1.getGenre() + ", ";
+                            content += "Likes: " + games1.getLike() + "\n\n";
+
+                            gameResult.append(content);
+                            gameResult.setMovementMethod(new ScrollingMovementMethod());
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<List<Games>> callGameByName, Throwable t) {
+                        dataInput.setText(t.getMessage());
+                    }
+                });
+            }
+        });
+
+        racing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gameResult.setText("");
+                consolesResult.setText("");
+                String buttonText = racing.getText().toString();
+                Call<List<Games>> filterGame = jsonPlaceHolderAPI.filterGame(buttonText);
+                filterGame.enqueue(new Callback<List<Games>>() {
+                    @Override
+                    public void onResponse(Call<List<Games>> callGameByName, Response<List<Games>> response) {
+                        if (!response.isSuccessful()) {
+                            dataInput.setText("Code: " + response.code());
+                            return;
+                        }
+                        List<Games> games = response.body();
+
+                        for (Games games1 : games) {
+                            String content = "";
+                            content += games1.getId() + ", ";
+                            content += games1.getGame() + ", ";
+                            content += games1.getGenre() + ", ";
+                            content += "Likes: " + games1.getLike() + "\n\n";
+
+                            gameResult.append(content);
+                            gameResult.setMovementMethod(new ScrollingMovementMethod());
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<List<Games>> callGameByName, Throwable t) {
+                        dataInput.setText(t.getMessage());
                     }
                 });
             }
