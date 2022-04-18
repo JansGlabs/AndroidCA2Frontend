@@ -4,6 +4,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 
 public interface JSONPlaceHolderAPI {
 
@@ -12,4 +13,7 @@ public interface JSONPlaceHolderAPI {
 
     @GET("Consoles")
     Call<List<Consoles>> getConsoles();
+
+    @GET("Games/game/{gameName}")
+    Call<List<Games>> getGameByName(@Path("gameName") String gameName);
 }

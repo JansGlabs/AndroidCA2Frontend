@@ -4,29 +4,12 @@ import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.ColorSpace;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-//import com.android.volley.Request;
-//import com.android.volley.RequestQueue;
-//import com.android.volley.Response;
-//import com.android.volley.VolleyError;
-//import com.android.volley.toolbox.JsonArrayRequest;
-//import com.android.volley.toolbox.StringRequest;
-//import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -37,9 +20,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button action, story, racing, survival;
+    Button action, story, racing, survival, search;
     private TextView gameResult;
     private TextView consolesResult;
+    private EditText dataInput;
 
 
     @Override
@@ -50,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         action = findViewById(R.id.action);
         gameResult = findViewById(R.id.gameResult);
         consolesResult = findViewById(R.id.consolesResult);
+        search = findViewById(R.id.search);
+        dataInput = findViewById(R.id.dataInput);
 //        story = findViewById(R.id.story);
 //        racing = findViewById(R.id.racing);
 //        survival = findViewById(R.id.survival);
@@ -118,6 +104,44 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Consoles>> callConsoles, Throwable t) {
                 consolesResult.setText(t.getMessage());
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                gameResult = " ";
+//                consolesResult = " ";
+                Call<List<Games>> callGameByName = jsonPlaceHolderAPI.getGameByName(dataInput.getText().toString());
+                callGameByName.enqueue(new Callback<List<Games>>() {
+                    // Checks if successful and displays
+                    @Override
+                    public void onResponse(Call<List<Games>> callGameByName, Response<List<Games>> response) {
+                        if (!response.isSuccessful()) {
+                            dataInput.setText("Code: " + response.code());
+                            return;
+                        }
+
+                        // Gets JSON Objects
+                        List<Games> games = response.body();
+
+                        // Iterates through each JSON item
+                        for (Games games1 : games) {
+                            String content = "";
+                            content += games1.getId() + ",\t";
+                            content += games1.getGame() + ",\t";
+                            content += games1.getGenre() + ",\t";
+                            content += "Likes: " + games1.getLike() + "\n\n";
+
+                            gameResult.append(content);
+                        }
+                    }
+                    // Checks if unsuccessful and displays error
+                    @Override
+                    public void onFailure(Call<List<Games>> callGameByName, Throwable t) {
+                        dataInput.setText(t.getMessage());
+                    }
+                });
             }
         });
     }
