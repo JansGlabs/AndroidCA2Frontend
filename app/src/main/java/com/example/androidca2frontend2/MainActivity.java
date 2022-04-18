@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Call<List<Consoles>> callConsoles = jsonPlaceHolderAPI.getConsoles();
-        call.enqueue(new Callback<List<Consoles>>() {
+        callConsoles.enqueue(new Callback<List<Consoles>>() {
             @Override
             public void onResponse(Call<List<Consoles>> callConsoles, Response<List<Consoles>> response) {
                 if (!response.isSuccessful()) {
@@ -104,10 +104,8 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Gets JSON Objects
                 List<Consoles> consoles = response.body();
 
-                // Iterates through each JSON item
                 for (Consoles allConsoles : consoles) {
                     String content = "";
                     content += allConsoles.getId() + ",\t";
@@ -116,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                     consolesResult.append(content);
                 }
             }
-            // Checks if unsuccessful and displays error
+
             @Override
             public void onFailure(Call<List<Consoles>> callConsoles, Throwable t) {
                 consolesResult.setText(t.getMessage());
