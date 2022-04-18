@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button action, story, racing, survival;
     private TextView gameResult;
+    private TextView consolesResult;
 
 
     @Override
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         action = findViewById(R.id.action);
         gameResult = findViewById(R.id.gameResult);
+        consolesResult = findViewById(R.id.consolesResult);
 //        story = findViewById(R.id.story);
 //        racing = findViewById(R.id.racing);
 //        survival = findViewById(R.id.survival);
@@ -90,6 +92,34 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Games>> call, Throwable t) {
                 gameResult.setText(t.getMessage());
+            }
+        });
+
+        Call<List<Consoles>> callConsoles = jsonPlaceHolderAPI.getConsoles();
+        call.enqueue(new Callback<List<Consoles>>() {
+            @Override
+            public void onResponse(Call<List<Consoles>> callConsoles, Response<List<Consoles>> response) {
+                if (!response.isSuccessful()) {
+                    consolesResult.setText("Code: " + response.code());
+                    return;
+                }
+
+                // Gets JSON Objects
+                List<Consoles> consoles = response.body();
+
+                // Iterates through each JSON item
+                for (Consoles allConsoles : consoles) {
+                    String content = "";
+                    content += allConsoles.getId() + ",\t";
+                    content += allConsoles.getName() + ",\t";
+
+                    consolesResult.append(content);
+                }
+            }
+            // Checks if unsuccessful and displays error
+            @Override
+            public void onFailure(Call<List<Consoles>> callConsoles, Throwable t) {
+                consolesResult.setText(t.getMessage());
             }
         });
     }

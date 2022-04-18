@@ -29,15 +29,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="racing"
-        app:layout_constraintEnd_toStartOf="@+id/survival"
+        app:layout_constraintEnd_toStartOf="@+id/consoles"
         app:layout_constraintStart_toEndOf="@+id/story"
         app:layout_constraintTop_toTopOf="@+id/story" />
 
     <Button
-        android:id="@+id/survival"
+        android:id="@+id/consoles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="survival"
+        android:text="consoles"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/racing"
         app:layout_constraintTop_toTopOf="@+id/racing"
@@ -54,5 +54,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/action" />
+
+    <TextView
+        android:id="@+id/consolesResult"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Consoles"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/action" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
