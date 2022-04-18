@@ -279,7 +279,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 gameResult.setText("");
                 consolesResult.setText("");
-                String buttonText = action.getText().toString();
+                String buttonText = "action";
                 Call<List<Games>> filterGame = jsonPlaceHolderAPI.filterGame(buttonText);
                 filterGame.enqueue(new Callback<List<Games>>() {
                     @Override
@@ -313,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 gameResult.setText("");
                 consolesResult.setText("");
-                String buttonText = adventure.getText().toString();
+                String buttonText = "adventure";
                 Call<List<Games>> filterGame = jsonPlaceHolderAPI.filterGame(buttonText);
                 filterGame.enqueue(new Callback<List<Games>>() {
                     @Override
@@ -347,7 +347,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 gameResult.setText("");
                 consolesResult.setText("");
-                String buttonText = fps.getText().toString();
+                String buttonText = "fps";
                 Call<List<Games>> filterGame = jsonPlaceHolderAPI.filterGame(buttonText);
                 filterGame.enqueue(new Callback<List<Games>>() {
                     @Override
@@ -381,7 +381,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 gameResult.setText("");
                 consolesResult.setText("");
-                String buttonText = story.getText().toString();
+                String buttonText = "story";
                 Call<List<Games>> filterGame = jsonPlaceHolderAPI.filterGame(buttonText);
                 filterGame.enqueue(new Callback<List<Games>>() {
                     @Override
@@ -415,7 +415,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 gameResult.setText("");
                 consolesResult.setText("");
-                String buttonText = survival.getText().toString();
+                String buttonText = "survival";
                 Call<List<Games>> filterGame = jsonPlaceHolderAPI.filterGame(buttonText);
                 filterGame.enqueue(new Callback<List<Games>>() {
                     @Override
@@ -449,7 +449,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 gameResult.setText("");
                 consolesResult.setText("");
-                String buttonText = racing.getText().toString();
+                String buttonText = "racing";
                 Call<List<Games>> filterGame = jsonPlaceHolderAPI.filterGame(buttonText);
                 filterGame.enqueue(new Callback<List<Games>>() {
                     @Override
