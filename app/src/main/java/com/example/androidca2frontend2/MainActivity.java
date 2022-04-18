@@ -110,8 +110,8 @@ public class MainActivity extends AppCompatActivity {
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                gameResult = " ";
-//                consolesResult = " ";
+                gameResult.setText("");
+                consolesResult.setText("");
                 Call<List<Games>> callGameByName = jsonPlaceHolderAPI.getGameByName(dataInput.getText().toString());
                 callGameByName.enqueue(new Callback<List<Games>>() {
                     // Checks if successful and displays
