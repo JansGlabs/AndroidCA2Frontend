@@ -10,93 +10,135 @@
         android:id="@+id/search"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:text="Search"
         app:layout_constraintEnd_toStartOf="@+id/like"
-        app:layout_constraintTop_toBottomOf="@+id/racing" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/games"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="320dp"
+        android:layout_marginTop="120dp"
+        android:textSize="10sp"
+        android:text="all"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/action"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:textSize="10sp"
         android:text="action"
-        app:layout_constraintEnd_toStartOf="@+id/story"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/games"
+        app:layout_constraintTop_toTopOf="@+id/games" />
 
     <Button
-        android:id="@+id/story"
+        android:id="@+id/adventure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="story"
-        app:layout_constraintEnd_toStartOf="@+id/racing"
-        app:layout_constraintStart_toEndOf="@+id/action"
+        android:layout_marginTop="48dp"
+        android:textSize="10sp"
+        android:text="adventur"
+        app:layout_constraintStart_toStartOf="@+id/action"
         app:layout_constraintTop_toTopOf="@+id/action" />
 
-    <Button
-        android:id="@+id/racing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="racing"
-        app:layout_constraintEnd_toStartOf="@+id/console"
-        app:layout_constraintStart_toEndOf="@+id/story"
-        app:layout_constraintTop_toTopOf="@+id/story" />
 
     <Button
         android:id="@+id/console"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="console"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/racing"
-        app:layout_constraintTop_toTopOf="@+id/racing"
+        android:textSize="10sp"
+        android:text="consoles"
+        app:layout_constraintBottom_toTopOf="@+id/games"
+        app:layout_constraintStart_toStartOf="@+id/games" />
 
-        />
+    <Button
+        android:id="@+id/fps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="fps"
+        app:layout_constraintStart_toStartOf="@+id/adventure"
+        app:layout_constraintTop_toTopOf="@+id/adventure" />
+
+
+    <Button
+        android:id="@+id/story"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:textSize="10sp"
+        android:text="story"
+        app:layout_constraintStart_toStartOf="@+id/adventure"
+        app:layout_constraintTop_toTopOf="@+id/adventure" />
+
+    <Button
+        android:id="@+id/survival"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:textSize="10sp"
+        android:text="survive"
+        app:layout_constraintStart_toStartOf="@+id/story"
+        app:layout_constraintTop_toTopOf="@+id/story" />
+
+    <Button
+        android:id="@+id/racing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:textSize="10sp"
+        android:text="racing"
+        app:layout_constraintStart_toStartOf="@+id/survival"
+        app:layout_constraintTop_toTopOf="@+id/survival" />
 
     <TextView
         android:id="@+id/gameResult"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
         android:ems="10"
+        android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/action" />
+        app:layout_constraintTop_toBottomOf="@+id/search" />
 
     <TextView
         android:id="@+id/consolesResult"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
         android:ems="10"
+        android:textColor="#000000"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/action" />
+        app:layout_constraintTop_toBottomOf="@+id/search" />
 
     <Button
         android:id="@+id/like"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:text="Like"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/console" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/dataInput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Game Name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/search"
         app:layout_constraintHorizontal_bias="0.029"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/action" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

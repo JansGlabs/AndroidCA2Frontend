@@ -20,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button action, story, racing, survival, search, like, console;
+    Button games, story, racing, survival, search, like, console;
     private TextView gameResult;
     private TextView consolesResult;
     private EditText dataInput;
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        action = findViewById(R.id.action);
+        games = findViewById(R.id.games);
         gameResult = findViewById(R.id.gameResult);
         consolesResult = findViewById(R.id.consolesResult);
         search = findViewById(R.id.search);
@@ -68,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
                 // Iterates through each JSON item
                 for (Games games1 : games) {
                     String content = "";
-                    content += games1.getId() + ",\t";
-                    content += games1.getGame() + ",\t";
-                    content += games1.getGenre() + ",\t";
+                    content += games1.getId() + ", ";
+                    content += games1.getGame() + ", ";
+                    content += games1.getGenre() + ", ";
                     content += "Likes: " + games1.getLike() + "\n\n";
 
                     gameResult.append(content);
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
                         for (Consoles allConsoles : consoles) {
                             String content = "";
-                            content += allConsoles.getId() + ",\t";
+                            content += allConsoles.getId() + ", ";
                             content += allConsoles.getName() + "\n\n";
 
                             consolesResult.append(content);
@@ -117,6 +117,44 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //get api/games by filter
+        games.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gameResult.setText("");
+                consolesResult.setText("");
+                Call<List<Games>> call = jsonPlaceHolderAPI.getGames();
+                call.enqueue(new Callback<List<Games>>() {
+                    // Checks if successful and displays
+                    @Override
+                    public void onResponse(Call<List<Games>> call, Response<List<Games>> response) {
+                        if (!response.isSuccessful()) {
+                            gameResult.setText("Code: " + response.code());
+                            return;
+                        }
+
+                        // Gets JSON Objects
+                        List<Games> games = response.body();
+
+                        // Iterates through each JSON item
+                        for (Games games1 : games) {
+                            String content = "";
+                            content += games1.getId() + ", ";
+                            content += games1.getGame() + ", ";
+                            content += games1.getGenre() + ", ";
+                            content += "Likes: " + games1.getLike() + "\n\n";
+
+                            gameResult.append(content);
+                        }
+                    }
+                    // Checks if unsuccessful and displays error
+                    @Override
+                    public void onFailure(Call<List<Games>> call, Throwable t) {
+                        gameResult.setText(t.getMessage());
+                    }
+                });
+            }
+        });
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,9 +177,9 @@ public class MainActivity extends AppCompatActivity {
                         // Iterates through each JSON item
                         for (Games games1 : games) {
                             String content = "";
-                            content += games1.getId() + ",\t";
-                            content += games1.getGame() + ",\t";
-                            content += games1.getGenre() + ",\t";
+                            content += games1.getId() + ", ";
+                            content += games1.getGame() + ", ";
+                            content += games1.getGenre() + ", ";
                             content += "Likes: " + games1.getLike() + "\n\n";
 
                             gameResult.append(content);
@@ -194,9 +232,9 @@ public class MainActivity extends AppCompatActivity {
                         // Iterates through each JSON item
                         for (Games games1 : games) {
                             String content = "";
-                            content += games1.getId() + ",\t";
-                            content += games1.getGame() + ",\t";
-                            content += games1.getGenre() + ",\t";
+                            content += games1.getId() + ", ";
+                            content += games1.getGame() + ", ";
+                            content += games1.getGenre() + ", ";
                             content += "Likes: " + games1.getLike() + "\n\n";
 
                             gameResult.append(content);
@@ -221,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
 
                         for (Consoles allConsoles : consoles) {
                             String content = "";
-                            content += allConsoles.getId() + ",\t";
+                            content += allConsoles.getId() + ", ";
                             content += allConsoles.getName() + "\n\n";
 
                             consolesResult.append(content);
