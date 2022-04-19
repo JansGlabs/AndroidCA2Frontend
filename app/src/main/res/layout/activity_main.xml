@@ -139,7 +139,6 @@
         android:hint="Game Name"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/search"
-        android:text="@string/dataInput"
         app:layout_constraintHorizontal_bias="0.029"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
